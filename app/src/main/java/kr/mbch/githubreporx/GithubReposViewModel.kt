@@ -8,6 +8,7 @@ import kr.mbch.githubreporx.retrofit.GithubRepository
 import kr.mbch.githubreporx.retrofit.entity.GithubRepo
 
 class GithubReposViewModel {
+    private val TAG = GithubReposViewModel::class.simpleName
     private val repository = GithubRepository()
 
     var searchText = ""
@@ -28,7 +29,7 @@ class GithubReposViewModel {
                     ).subscribe {
                         emitter.onSuccess(it)
                     }
-                }, {})
+                }, { println("$TAG $it")})
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
